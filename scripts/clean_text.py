@@ -30,7 +30,7 @@ def extract_text(file_path: Path) -> str:
         doc = Document(file_path)
         return "\n".join(paragraph.text for paragraph in doc.paragraphs)
     if suffix == ".pdf":
-        reader = PdfReader(str(file_path))
+        reader = PdfReader(file_path)
         return "\n".join(page.extract_text() or "" for page in reader.pages)
     raise ValueError(f"Unsupported file type: {file_path.suffix}")
 

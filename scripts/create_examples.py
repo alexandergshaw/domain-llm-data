@@ -51,10 +51,25 @@ def split_into_chunks(text: str, max_chars: int = 1200) -> list[str]:
             if len(paragraph) <= max_chars:
                 current = paragraph
             else:
-                for start in range(0, len(paragraph), max_chars):
-                    part = paragraph[start : start + max_chars].strip()
-                    if part:
-                        chunks.append(part)
+                words = paragraph.split()
+                word_chunk = ""
+                for word in words:
+                    candidate_word_chunk = f"{word_chunk} {word}".strip()
+                    if len(candidate_word_chunk) <= max_chars:
+                        word_chunk = candidate_word_chunk
+                    else:
+                        if word_chunk:
+                            chunks.append(word_chunk)
+                        if len(word) <= max_chars:
+                            word_chunk = word
+                        else:
+                            for start in range(0, len(word), max_chars):
+                                piece = word[start : start + max_chars].strip()
+                                if piece:
+                                    chunks.append(piece)
+                            word_chunk = ""
+                if word_chunk:
+                    chunks.append(word_chunk)
                 current = ""
 
     if current:
@@ -65,7 +80,7 @@ def split_into_chunks(text: str, max_chars: int = 1200) -> list[str]:
 
 def build_records(file_path: Path, cleaned_dir: Path, max_chars: int) -> list[dict[str, str]]:
     """Build draft JSONL records from one cleaned file."""
-    text = file_path.read_text(encoding="utf-8", errors="ignore").strip()
+    text = file_path.read_text(encoding="utf-8", errors="replace").strip()
     if not text:
         return []
 

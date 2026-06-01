@@ -28,7 +28,7 @@ class CleanTextTests(unittest.TestCase):
             cleaned_dir = base / "cleaned"
             (raw_dir / "syllabi").mkdir(parents=True)
             (raw_dir / "syllabi" / "week1.md").write_text("Hello\n\n\nWorld", encoding="utf-8")
-            (raw_dir / "syllabi" / "ignore.bin").write_text("\x00\x01", encoding="utf-8")
+            (raw_dir / "syllabi" / "ignore.bin").write_bytes(b"\x00\x01")
 
             processed, skipped = clean_raw_documents(raw_dir=raw_dir, cleaned_dir=cleaned_dir)
 
