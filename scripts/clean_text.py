@@ -25,7 +25,7 @@ def extract_text(file_path: Path) -> str:
     """Extract readable text from a supported file type."""
     suffix = file_path.suffix.lower()
     if suffix in {".txt", ".md"}:
-        return file_path.read_text(encoding="utf-8", errors="ignore")
+        return file_path.read_text(encoding="utf-8", errors="replace")
     if suffix == ".docx":
         doc = Document(file_path)
         return "\n".join(paragraph.text for paragraph in doc.paragraphs)
