@@ -1,0 +1,29 @@
+{
+  "instruction": "Grade this assignment using the provided rubric.",
+  "input": {
+    "course": "",
+    "assignment_id": "",
+    "assignment_prompt": "",
+    "rubric": "",
+    "expected_solution_notes": "",
+    "student_submission": "",
+    "test_results": "",
+    "policy_notes": ""
+  },
+  "output": {
+    "score": 0,
+    "points_possible": 100,
+    "rubric_breakdown": [
+      {
+        "criterion": "",
+        "points_awarded": 0,
+        "points_possible": 0,
+        "feedback": ""
+      }
+    ],
+    "summary_feedback": "",
+    "revision_priorities": [],
+    "flags": []
+  },
+  "category": "grading"
+}
