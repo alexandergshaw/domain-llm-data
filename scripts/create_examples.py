@@ -63,10 +63,7 @@ def split_into_chunks(text: str, max_chars: int = 1200) -> list[str]:
                         if len(word) <= max_chars:
                             word_chunk = word
                         else:
-                            for start in range(0, len(word), max_chars):
-                                piece = word[start : start + max_chars].strip()
-                                if piece:
-                                    chunks.append(piece)
+                            chunks.append(word)
                             word_chunk = ""
                 if word_chunk:
                     chunks.append(word_chunk)
